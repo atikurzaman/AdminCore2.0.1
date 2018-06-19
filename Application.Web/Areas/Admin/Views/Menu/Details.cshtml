@@ -1,0 +1,52 @@
+﻿@model Application.Web.Areas.Admin.Models.MenuViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_ControlPanel.cshtml";
+}
+
+<div class="top-buffer"></div>
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Details</div>
+    </div>
+</div>
+
+<div class="row">    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ControllerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ControllerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActionName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActionName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MenuArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ParentId)
+        </dd>
+    </dl>
+</div>
+<div class="row">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> 
+    <a asp-action="Index" class="btn btn-primary" role="button" aria-pressed="true">Back to List</a>
+</div>

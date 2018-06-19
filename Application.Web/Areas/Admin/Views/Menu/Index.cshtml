@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Application.Web.Areas.Admin.Models.MenuViewModel>
+@using Application.Web.Common
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_GentelellaAdmin.cshtml";
+}
+
+<div class="top-content-buffer"></div>
+<div class="table-responsive">
+    <div class="panel-heading panel-head respo">Menus</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createEditMenuModal" data-toggle="modal" asp-action="AddEditMenu" data-target="#modal-action-menu" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>  Add Menu
+            </a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ControllerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ActionName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MenuArea)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Disable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HasAccess)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ParentMenuName)
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ControllerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActionName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuArea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HasAccess)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParentMenuName)
+                    </td>                    
+                    <td>
+                        <a id="editMenuModal" data-toggle="modal" asp-action="AddEditMenu" asp-route-id="@item.Id" data-target="#modal-action-menu"
+                           class="btn btn-info">
+                            <i class="glyphicon glyphicon-pencil"></i>  Edit
+                        </a>
+                        <a id="deleteMenuModal" data-toggle="modal" asp-action="DeleteMenu" asp-route-id="@item.Id" data-target="#modal-action-menu" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>  Delete
+                        </a>
+                    </td> 
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-menu", AreaLabeledId = "modal-action-menu-label", Size = ModalSize.Medium })
+@section scripts
+    {
+    <script src="~/js/AdminJs/menu-index.js" asp-append-version="true"></script>
+}
