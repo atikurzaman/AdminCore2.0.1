@@ -37,7 +37,46 @@ namespace Application.Data.UnitOfWork
                 }
                 return _menus;
             }
-        }      
+        }
+
+        private IBrandRepository _brands;
+        public IBrandRepository Brands
+        {
+            get
+            {
+                if (_brands == null)
+                {
+                    _brands = new BrandRepository(context);
+                }
+                return _brands;
+            }
+        }
+
+        private IProductAttributeRepository _productAttribute;
+        public IProductAttributeRepository ProductAttributes
+        {
+            get
+            {
+                if (_productAttribute == null)
+                {
+                    _productAttribute = new ProductAttributeRepository(context);
+                }
+                return _productAttribute;
+            }
+        }
+
+        private IProductAttributeItemRepository _productAttributeItem;
+        public IProductAttributeItemRepository ProductAttributeItems
+        {
+            get
+            {
+                if (_productAttributeItem == null)
+                {
+                    _productAttributeItem = new ProductAttributeItemRepository(context);
+                }
+                return _productAttributeItem;
+            }
+        }
 
         public int Complete()
         {

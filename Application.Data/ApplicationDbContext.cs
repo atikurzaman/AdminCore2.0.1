@@ -16,16 +16,17 @@ namespace Application.Data
         public DbSet<RoleClaim> RoleClaims { get; set; }
         public DbSet<Menu> Menus { get; set; }        
         public DbSet<Category> Categories { get; set; }
-        
+        public DbSet<Category> ProductAttributes { get; set; }
+        public DbSet<Category> ProductAttributeItems { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
  
         protected override void OnModelCreating(ModelBuilder builder)
-        {
-            //base.OnModelCreating(builder);           
-            builder.RemovePluralizingTableNameConvention();
+        {                   
+            builder.RemovePluralizingTableNameConvention();            
             builder.ApplyConfiguration(new UserMap());
             builder.ApplyConfiguration( new RoleMap());
             builder.ApplyConfiguration(new UserRoleMap());
@@ -33,8 +34,11 @@ namespace Application.Data
             builder.ApplyConfiguration(new UserClaimMap());
             builder.ApplyConfiguration(new RoleClaimMap());
             builder.ApplyConfiguration(new UserTokenMap());
-            builder.ApplyConfiguration(new MenuMap());
-            builder.ApplyConfiguration( new CategoryMap());
+            builder.ApplyConfiguration(new MenuConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new BrandConfiguration());
+            builder.ApplyConfiguration(new ProductAttributeConfiguration());
+            builder.ApplyConfiguration(new ProductAttributeItemConfiguration());
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -12,6 +12,10 @@ namespace Application.Web.MappingDTO
         public ApplicationProfile()
         {
             CreateMap<Menu, MenuViewModel>().ReverseMap();
+            CreateMap<Category, CategoryViewModel>().ReverseMap();
+            CreateMap<Brand, BrandViewModel>().ReverseMap();
+            CreateMap<ProductAttribute, ProductAttributeViewModel>().ReverseMap();
+            CreateMap<ProductAttributeItem, ProductAttributeItemViewModel>().ReverseMap();
         }
     }
 }

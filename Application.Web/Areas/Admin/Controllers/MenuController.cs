@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Http;
 namespace Application.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class MenuController : Controller
+    public class MenuController : BaseController
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
@@ -29,12 +29,7 @@ namespace Application.Web.Areas.Admin.Controllers
             _uow = uow;
             _mapper = mapper;
             _logger = logger;
-        }
-
-        private string GetIpAddress()
-        {
-            return Request.HttpContext.Connection.RemoteIpAddress.ToString();
-        }
+        }        
         public IActionResult Index()
         {
             IEnumerable<Menu> menus = _uow.Menus.GetMenuWithParentName();

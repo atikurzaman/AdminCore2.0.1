@@ -4,14 +4,16 @@ using Application.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Application.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180622010908_Add Attribute")]
+    partial class AddAttribute
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -309,20 +311,6 @@ namespace Application.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("IPAddress")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("MacAddress")
-                        .HasMaxLength(256);
-
-                    b.Property<long?>("ModifiedBy");
-
-                    b.Property<DateTime?>("ModifiedDate");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128);
@@ -333,7 +321,7 @@ namespace Application.Data.Migrations
 
                     b.Property<bool>("Status")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(true);
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
@@ -346,22 +334,8 @@ namespace Application.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedDate");
-
                     b.Property<string>("Description")
                         .HasMaxLength(1024);
-
-                    b.Property<string>("IPAddress")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("MacAddress")
-                        .HasMaxLength(256);
-
-                    b.Property<long?>("ModifiedBy");
-
-                    b.Property<DateTime?>("ModifiedDate");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -371,7 +345,7 @@ namespace Application.Data.Migrations
 
                     b.Property<bool>("Status")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(true);
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 

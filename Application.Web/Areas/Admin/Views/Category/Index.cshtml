@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Application.Web.Areas.Admin.Models.CategoryViewModel>
+@using Application.Web.Common
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_GentelellaAdmin.cshtml";
+}
+
+<div class="top-content-buffer"></div>
+<div class="table-responsive">
+    <div class="panel-heading panel-head respo">Categories</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createEditCategoryModal" data-toggle="modal" asp-action="AddEditCategory" data-target="#modal-action-category" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>  Add Category
+            </a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.ParentCategoryName)
+                    </th>                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModifiedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModifiedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IPAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MacAddress)
+                    </th>                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParentCategoryName)
+                    </td>                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IPAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MacAddress)
+                    </td>                    
+                    <td>
+                        <a id="editCategoryModal" data-toggle="modal" asp-action="AddEditCategory" asp-route-id="@item.Id" data-target="#modal-action-category"
+                           class="btn btn-info">
+                            <i class="glyphicon glyphicon-pencil"></i>  Edit
+                        </a>
+                        <a id="deleteCategoryModal" data-toggle="modal" asp-action="DeleteCategory" asp-route-id="@item.Id" data-target="#modal-action-category" class="btn btn-danger">
+                            <i class="glyphicon glyphicon-trash"></i>  Delete
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-category", AreaLabeledId = "modal-action-category-label", Size = ModalSize.Medium })
+@section scripts
+    {
+    <script src="~/js/AdminJs/category-index.js" asp-append-version="true"></script>
+}
